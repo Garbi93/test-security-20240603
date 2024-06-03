@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    // 비크립트 암호화 메서드 
+    // 비크립트 암호화 메서드
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -22,7 +22,7 @@ public class SecurityConfig {
         // 인증, 인가 작업
         http
                 .authorizeHttpRequests((auth)-> auth
-                        .requestMatchers("/","/login").permitAll()
+                        .requestMatchers("/","/login","/loginProc", "/join", "/joinProc").permitAll()
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .requestMatchers("/my/**").hasAnyRole("ADMIN","USER")
                         .anyRequest().authenticated()
