@@ -10,4 +10,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     // 동일한 값이 존재하면 true 리턴 없으면 false 를 리턴
     boolean existsByUsername(String username);
 
+    // 회원 이름 기준으로 해당 회원 정보 갖고 오기
+    UserEntity findByUsername(String username);
+
 }
