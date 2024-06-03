@@ -5,4 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
+    // DB 에 동일 유저이름이 존재하는지 확인하기 위해
+    // JPA 구문을 강제로 커스텀 하여 생성
+    // 동일한 값이 존재하면 true 리턴 없으면 false 를 리턴
+    boolean existsByUsername(String username);
+
 }
