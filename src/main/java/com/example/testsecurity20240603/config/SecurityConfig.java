@@ -2,6 +2,7 @@ package com.example.testsecurity20240603.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,10 +31,18 @@ public class SecurityConfig {
 
         // 로그인 관련 작업
         http
-                .formLogin((auth) -> auth.loginPage("/login")
-                        .loginProcessingUrl("/loginProc")
-                        .permitAll()
-                );
+                // formLogin 방식 구현 ------------------------------
+//                .formLogin((auth) -> auth.loginPage("/login")
+//                        .loginProcessingUrl("/loginProc")
+//                        .permitAll()
+//                );
+                // formLogin 방식 구현 ------------------------------
+
+                // httpBasic 방식 로그인 구현 ------------------------------
+                .httpBasic(Customizer.withDefaults());
+                // httpBasic 방식 로그인 구현 ------------------------------
+
+
 
         // csrf 필터 관련 작업
         // 주석처리하면 csrf 가 켜지게 된다.
