@@ -39,6 +39,22 @@ public class SecurityConfig {
         http
                 .csrf((auth) -> auth.disable());
 
+        // 다중로그인 설정 관련 작업
+        http
+                .sessionManagement((auth) -> auth
+                        // 하나의 계정에서 최대 동시 접속 가능 수
+                        .maximumSessions(1)
+                        // 최대 접속 계정 수 초과시 어떤것을 로그아웃 시킬시 결정 -> true 는 새로운 로그인 차단
+                        .maxSessionsPreventsLogin(true)
+                );
+
+        // 세션 고정 (탈취) 보호
+        http
+                .sessionManagement((auth) -> auth
+                        // 로그인 시 동일 세션에 대한 id 를 변경하는 기능
+                        .sessionFixation().changeSessionId()
+                );
+
 
         return http.build();
     }
