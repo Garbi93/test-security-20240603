@@ -36,8 +36,9 @@ public class SecurityConfig {
                 );
 
         // csrf 필터 관련 작업
-        http
-                .csrf((auth) -> auth.disable());
+        // 주석처리하면 csrf 가 켜지게 된다.
+//        http
+//                .csrf((auth) -> auth.disable());
 
         // 다중로그인 설정 관련 작업
         http
